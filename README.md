@@ -1,4 +1,4 @@
-# meizu
+# meizu魅族商城
 
 ## Project setup
 ```
