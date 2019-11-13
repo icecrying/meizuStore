@@ -9,6 +9,13 @@
       </ul>
       <v-swiper :data="advertiseData"></v-swiper>
     </div>
+    <ul class="post-wrap">
+      <li class="post-item" v-for="(item, index) in postDATA" :key="index">
+        <a :href="item.href">
+          <img class="post-img" :src="item.imgUrl" alt="">
+        </a>
+      </li>
+    </ul>
   </div>
 </template>
 
@@ -23,6 +30,7 @@ export default {
     return {
       menuData: [],
       advertiseData: [],
+      postDATA: [],
     };
   },
   components: {
@@ -32,6 +40,7 @@ export default {
   created() {
     this.getMenuData();
     this.getAdvertiseData();
+    this.getPostData();
   },
   methods: {
     async getMenuData() {
@@ -41,6 +50,10 @@ export default {
     async getAdvertiseData() {
       const { data } = await axios.get('/api/advertise');
       this.advertiseData = data;
+    },
+    async getPostData() {
+      const { data } = await axios.get('/api/post');
+      this.postDATA = data;
     },
   },
 };
@@ -71,6 +84,24 @@ export default {
     li{
       height: 57px;
       line-height: 57px;
+      &:hover{
+        color: #31a5e7;
+      }
+    }
+  }
+}
+.post-wrap{
+  width: 1240px;
+  height: 180px;
+  margin: 10px auto 0;
+  display: flex;
+  justify-content: space-between;
+  .post-item{
+    width: 303px;
+    height: 180px;
+    .post-img{
+      width: 100%;
+      height: 100%;
     }
   }
 }
