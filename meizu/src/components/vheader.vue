@@ -28,7 +28,8 @@
       <div class="nav-drop" v-if="showNav" @mouseleave="closeNavDrop">
         <div class="nav-children" >
          <transition-group tag="ul" @enter="enter">
-          <li v-for="(item, index) in navDropItemData" :key="index+1" :data-index="index">
+          <li v-for="(item, index) in navDropItemData" :key="index+1"
+          :data-index="index">
             <a href="javascript:;">
               <img :src=item.pic alt="">
               <p class="goodsname" :title=item.name>{{item.name}}</p>
@@ -44,7 +45,7 @@
 
 <script>
 import axios from 'axios';
-import Velocity from 'velocity-animate';
+// import Velocity from 'velocity-animate';
 
 export default {
   name: 'vheader',
@@ -72,16 +73,17 @@ export default {
     closeNavDrop() {
       this.showNav = false;
     },
-    enter(el) {
+    enter(el, done) {
       // 获取自定义属性
-      console.log(el.dataset.index);
-      const timeOut = el.dataset.index * 150;
-      setTimeout(() => {
-        Velocity(el, {
-          opacity: 1,
-          translateX: '-5px',
-        });
-      }, timeOut);
+      console.log(el);
+      // const timeOut = el.dataset.index * 150;
+      // setTimeout(() => {
+      //   Velocity(el, {
+      //     opacity: 1,
+      //     translateX: '-5px',
+      //   });
+      // }, timeOut);
+      done();
     },
   },
 };
