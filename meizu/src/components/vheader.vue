@@ -1,7 +1,7 @@
 <template>
   <div class="header-container">
     <div class="header">
-      <div class="header-logo">
+      <div class="header-logo" @click="backHome">
         <img src="../assets/img/logo.png" alt="">
       </div>
       <div class="header-nav">
@@ -75,7 +75,7 @@ export default {
     },
     enter(el, done) {
       // 获取自定义属性
-      console.log(el);
+      // console.log(el);
       // const timeOut = el.dataset.index * 150;
       // setTimeout(() => {
       //   Velocity(el, {
@@ -85,6 +85,11 @@ export default {
       // }, timeOut);
       done();
     },
+    backHome() {
+      this.$router.push({
+        path: '/',
+      })
+    }
   },
 };
 </script>
@@ -106,6 +111,7 @@ export default {
   align-items: center;
 
   .header-logo{
+    cursor: pointer;
     width: 140px;
     height: 26px;
     img{

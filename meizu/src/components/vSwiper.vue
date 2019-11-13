@@ -1,19 +1,21 @@
 <template>
   <div class="swiper-wrap" :style="swiperSize">
-    <div class="swiper">
-      <div class="swiper-item" v-for="(item, index) in data" :key="index" :style="swiperTransform">
+    <div class="swiper" :style="swiperTransition">
+      <div class="swiper-item" v-for="(item, index) in data" :key="index">
         <a :href="item.href">
           <img :style="swiperSize" :src="item.imgUrl" alt />
         </a>
       </div>
-      <div class="swiper-item" :style="swiperTransform" :key="data.length + 1">
-        <!-- <a :href="data[0].href"> -->
-          <img :style="swiperSize" :src="data[0].imgUrl" alt />
-        <!-- </a> -->
+      <div class="swiper-item" v-if="data.length>0">
+        <a :href="data[0].href">
+          <img :style="swiperSize" :src="data[0].imgUrl" alt="">
+        </a>
       </div>
     </div>
     <ul class="pager">
-      <li class="pager-item" v-for="(item, index) in data" :key="index"></li>
+      <li class="pager-item" v-for="(item, index) in data" :key="index" @click="changeItem(index)"
+          :class="{active: nowSwiperIndex === index}">
+      </li>
     </ul>
   </div>
 </template>
@@ -50,7 +52,8 @@ export default {
   data() {
     return {
       nowSwiperIndex: 0,
-      timer: null
+      timer: null,
+      time: 0.3
     };
   },
   computed: {
@@ -60,29 +63,36 @@ export default {
         width: `${this.width}px`
       };
     },
-    swiperTransform() {
+    swiperTransition() {
       return {
+        width: `${(this.data.length + 1) * this.width}px`,
+        height: `${this.height}px`,
         transform: `translateX(-${this.width * this.nowSwiperIndex}px)`,
-        transition: 'transform .3s ease-in-out'
+        transitionDuration: `${this.time}s`
       };
     }
   },
   components: {},
   mounted() {
-    this.swiperTab();
+    this.swiperTimer();
   },
   methods: {
-    swiperTab() {
+    swiperTimer() {
       clearInterval(this.timer);
-      // console.log(this.data);
       this.timer = setInterval(() => {
-        // console.log(this.data);
-        if (this.nowSwiperIndex < this.data.length) {
+        if (this.nowSwiperIndex < this.data.length - 1) {
           this.nowSwiperIndex += 1;
+          this.time = 0.3;
         } else {
           this.nowSwiperIndex = 0;
+          this.time = 0;
         }
       }, this.delay);
+    },
+    changeItem(index) {
+      clearInterval(this.timer);
+      this.nowSwiperIndex = index;
+      this.swiperTimer();
     }
   }
 };
@@ -98,6 +108,22 @@ export default {
     height: 100%;
     display: flex;
     align-items: center;
+  }
+  .pager{
+    position: absolute;
+    bottom: 20px;
+    left: 400px;
+    display: flex;
+    .pager-item{
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      margin-right: 16px;
+      background-color: #ccc;
+    }
+    .active{
+      background-color: #fff;
+    }
   }
 }
 </style>

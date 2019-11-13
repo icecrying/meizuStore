@@ -437,7 +437,7 @@ const data = {
             goodsName: '魅蓝20寸 酷MA萌 旅行箱',
             goodsDesc: '静音双排万向轮设计',
             goodsPrice: 349,
-            lower: false,
+            lower: true,
             oldPrice: null,
             newProduct: false
         }, {
@@ -446,7 +446,7 @@ const data = {
             goodsName: '魅族 Flow 三单元耳机',
             goodsDesc: '领券立减150元',
             goodsPrice: 599,
-            lower: false,
+            lower: true,
             oldPrice: null,
             newProduct: false
         }, {
@@ -455,7 +455,7 @@ const data = {
             goodsName: '魅族 EP51蓝牙运动耳机',
             goodsDesc: '丛林绿/云雾蓝新品开售',
             goodsPrice: 179,
-            lower: false,
+            lower: true,
             oldPrice: null,
             newProduct: false
         }, {
@@ -464,7 +464,7 @@ const data = {
             goodsName: '魅族 EP2X耳机',
             goodsDesc: '契合声音的流动之美',
             goodsPrice: 89,
-            lower: false,
+            lower: true,
             oldPrice: 129,
             newProduct: false
         }, {
@@ -473,7 +473,7 @@ const data = {
             goodsName: '乐心智能体脂秤A3-F',
             goodsDesc: '18项身体数据监测',
             goodsPrice: 129,
-            lower: false,
+            lower: true,
             oldPrice: null,
             newProduct: false
         }, {
@@ -482,7 +482,7 @@ const data = {
             goodsName: '魅蓝EP52蓝牙耳机',
             goodsDesc: '新品到货 限量抢购',
             goodsPrice: 269,
-            lower: false,
+            lower: true,
             oldPrice: 299,
             newProduct: false
         }, {
@@ -491,7 +491,7 @@ const data = {
             goodsName: '魅族HD50 头戴式耳机',
             goodsDesc: '清新简洁，有音质更有颜值',
             goodsPrice: 399,
-            lower: false,
+            lower: true,
             oldPrice: null,
             newProduct: false
         }, {
@@ -500,7 +500,7 @@ const data = {
             goodsName: '魅族手环',
             goodsDesc: '腕间流动的心率专家',
             goodsPrice: 169,
-            lower: false,
+            lower: true,
             oldPrice: 229,
             newProduct: false
         }, {
@@ -509,7 +509,7 @@ const data = {
             goodsName: '魅族蓝牙小音箱',
             goodsDesc: '好音感 直达心灵',
             goodsPrice: 169,
-            lower: false,
+            lower: true,
             oldPrice: null,
             newProduct: false
         }, {
@@ -518,7 +518,7 @@ const data = {
             goodsName: '魅族无线充电器',
             goodsDesc: '10W快速充电 72h内发货',
             goodsPrice: 99,
-            lower: false,
+            lower: true,
             oldPrice: null,
             newProduct: true
         }, {
@@ -527,7 +527,7 @@ const data = {
             goodsName: '魅蓝 休闲旅行双肩包',
             goodsDesc: '曲面一体式 多功能隔层',
             goodsPrice: 199,
-            lower: false,
+            lower: true,
             oldPrice: null,
             newProduct: false
         }
