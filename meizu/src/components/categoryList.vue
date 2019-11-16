@@ -2,9 +2,16 @@
 <template>
   <ul class="goods-wrap">
     <li class="goods" :style="listSize"
-    v-for="(item, index) in data" :key="index">
+        v-for="(item, index) in data" :key="index">
       <a :href="item.href">
-        <img class="goods-img" :src="item.goodsUrl" alt="">
+        <img class="goods-img" :src="item.colorImageUrls[nowGoods]" alt="">
+      </a>
+      <div class="goods-model">
+        <div v-for="(info, i) in item.colorImageUrls" :key="i" class="goods-info"
+           @click="changeNowGoods(i)" :class="{'active': nowGoods === i}">
+          <img :src="info" alt="">
+        </div>
+      </div>
         <h3 class="goods-name">{{item.goodsName}}</h3>
         <p class="goods-desc">{{item.goodsDesc}}</p>
         <div class="goods-price">
@@ -14,7 +21,6 @@
           <span class="oldprice" v-else>¥{{item.oldPrice}}</span>
         </div>
         <div class="new-goods" v-if="item.newProduct">新品</div>
-      </a>
     </li>
   </ul>
 </template>
@@ -38,12 +44,13 @@ export default {
     height: {
       type: Number,
       default() {
-        return 400;
+        return 420;
       }
     }
   },
   data() {
     return {
+      nowGoods: 0
     };
   },
 
@@ -58,7 +65,11 @@ export default {
     }
   },
 
-  methods: {}
+  methods: {
+    changeNowGoods(i) {
+      this.nowGoods = i;
+    }
+  }
 };
 
 </script>
@@ -79,7 +90,28 @@ export default {
       text-align: center;
       .goods-img{
         height: 230px;
-        margin: 30px auto;
+        margin: 20px auto;
+      }
+      .goods-model{
+        height: 40px;
+        margin-bottom: 15px;
+        display: flex;
+        justify-content: center;
+        .goods-info{
+          width: 40px;
+          height: 40px;
+          border-radius: 5px;
+          border: 1px solid #cccccc;
+          box-sizing: border-box;
+          margin-right: 8px;
+          &:last-child{
+            margin-right: 0;
+          }
+          img{
+            width: 100%;
+            height: 100%;
+          }
+        }
       }
       .goods-name{
         color: #333;

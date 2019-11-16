@@ -4,7 +4,11 @@
     <div class="options-wrap" v-for="(item, index) in data" :key="index">
       <div class="options">{{item.name}}</div>
       <ul>
-        <li :class="{active: activeFilter[item.key] === info.value}" v-for="(info, i) in item.queryList" :key="i" @click="changeFilter(item.key, info.value)">{{info.name}}</li>
+        <li :class="{active: activeFilter[item.key] === info.value}"
+            v-for="(info, i) in item.queryList" :key="i"
+            @click="changeFilter(item.key, info.value)">
+          {{info.name}}
+        </li>
       </ul>
     </div>
   </div>
@@ -15,14 +19,18 @@ export default {
   name: 'queryList',
   data() {
     return {
-      activeFilter: {}
+      activeFilter: {
+        brand: null,
+        size: null,
+        memory: null
+      }
     };
   },
   props: {
     data: {
       type: Array,
       default() {
-        return []
+        return [];
       }
     }
   },
@@ -33,22 +41,23 @@ export default {
   methods: {
     changeFilter(key, val) {
       this.$set(this.activeFilter, key, val);
+      this.$emit('query', this.activeFilter);
     }
   }
-}
+};
 
 </script>
 <style lang='less' scoped>
 .wrap{
   padding: 15px 10px;
   background-color: #fff;
+  margin-bottom: 10px;
 }
 .options-wrap{
-  
   font-size: 14px;
   display: flex;
   line-height: 1;
-  padding: 15 10px;
+  padding: 15px 10px;
   color: #515151;
   .options{
     width: 80px;
@@ -70,4 +79,3 @@ export default {
   }
 }
 </style>
-
