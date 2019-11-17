@@ -41,7 +41,7 @@ export default {
   methods: {
     changeFilter(key, val) {
       this.$set(this.activeFilter, key, val);
-      this.$emit('query', this.activeFilter);
+      this.$emit('setQuery', this.activeFilter);
     }
   }
 };

@@ -14,6 +14,7 @@ export default new Router({
       children: [
       ]
     },
-    { path: '/category', component: () => import('./views/category.vue') }
+    { path: '/category', component: () => import('./views/category.vue') },
+    { path: '/test', component: () => import('./views/test.vue') }
   ]
 });

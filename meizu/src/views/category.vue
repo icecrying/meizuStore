@@ -5,8 +5,8 @@
     <div class="main">
       <div class="main-wrap">
         <p class="nav"><span>首页</span> > <span>全部商品</span> > <span class="now-nav">手机</span></p>
-        <query-list :data="queryListData" @query="query"></query-list>
-        <sort-nav></sort-nav>
+        <query-list :data="queryListData" @setQuery="setQuery"></query-list>
+        <sort-nav @setSort="setSort" @setStock="setStock"></sort-nav>
         <category-list :data="categoryListData"></category-list>
       </div>
     </div>
@@ -26,7 +26,10 @@ export default {
     return {
       queryListData: [],
       categoryListData: [],
-      _categoryListData: []
+      _categoryListData: [],
+      currentQuery: null,
+      currentSort: null,
+      currentStock: null
     };
   },
 
@@ -52,13 +55,44 @@ export default {
       this.categoryListData = data;
       this._categoryListData = [...data];
     },
-    query(val) {
-      this.categoryListData = [...this._categoryListData]
-      Object.keys(val).forEach((key) => {
-        if (val[key]) {
-          this.categoryListData = this.categoryListData.filter(item => item.features.indexOf(val[key]) !== -1);
+    sortGoods() {
+      this.categoryListData = [...this._categoryListData];
+      if (this.currentQuery) {
+        Object.keys(this.currentQuery).forEach((key) => {
+          if (this.currentQuery[key]) {
+            this.categoryListData = this.categoryListData.filter(item => item.features.indexOf(this.currentQuery[key]) !== -1);
+          }
+        });
+      }
+      if (this.currentSort) {
+        if (this.currentSort === 'recommend') {
+          this.categoryListData.sort((a, b) => b.shelveTime - a.shelveTime)
+        } else if (this.currentSort === 'new') {
+          this.categoryListData.sort((a, b) => b.publishedTime - a.publishedTime)
+        } else {
+          this.categoryListData.sort((a, b) => {
+            if (this.currentSort === 'high') {
+              return b.priceForApp - a.priceForApp
+            }
+            return a.priceForApp - b.priceForApp
+          })
         }
-      });
+      }
+      if (this.currentStock) {
+        this.categoryListData = this.categoryListData.filter(item => item.available)
+      }
+    },
+    setQuery(val) {
+      this.currentQuery = val;
+      this.sortGoods();
+    },
+    setSort(val) {
+      this.currentSort = val;
+      this.sortGoods();
+    },
+    setStock(val) {
+      this.currentStock = val;
+      this.sortGoods();
     }
   }
 };

@@ -78,7 +78,7 @@
         <div class="relevant-wrap">
           <div class="relevant-left">
             <ul class="relevant-list">
-              <li>了解魅族</li>
+              <li @click="gotoTest">了解魅族</li>
               <li>加入我们</li>
               <li>联系我们</li>
               <li>Flyme</li>
@@ -174,9 +174,13 @@ export default {
     gotoCategory() {
       this.$router.push({
         path: '/category'
-        // params: {id: 1}
       })
-    }
+    },
+    gotoTest() {
+      this.$router.push({
+        path: '/test'
+      })
+    },
   }
 };
 </script>

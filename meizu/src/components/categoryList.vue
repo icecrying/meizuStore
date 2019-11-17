@@ -77,10 +77,10 @@ export default {
   .goods-wrap{
     width: 100%;
     display: flex;
-    justify-content: space-between;
+    /*justify-content: space-between;*/
     flex-wrap: wrap;
     .goods{
-      margin-top: 10px;
+      margin: 10px 9px 0 0;
       flex: 0 0 auto;
       background-color: #fff;
       position: relative;
@@ -88,6 +88,10 @@ export default {
       flex-direction: column;
       align-items: center;
       text-align: center;
+      &:nth-child(4n) {
+        margin-right: 0;
+      }
+
       .goods-img{
         height: 230px;
         margin: 20px auto;
